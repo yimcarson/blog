@@ -1,0 +1,51 @@
+# Server
+server:
+  port: 8081
+  servlet:
+    path: /blog/v1
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 500
+    min-spare-threads: 10
+
+spring:
+  # MySQL
+  datasource:
+    url: jdbc:mysql://47.97.212.12:3306/blog?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&autoReconnect=true&failOverReadOnly=false&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  jpa:
+    database: MYSQL
+    show-sql: true
+    #hibernate ddl auto(validate,create,update,create-drop)
+    hibernate:
+#      ddl-auto: update
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  # Thymeleaf
+  thymeleaf:
+    check-template: true
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/xml
+    cache: false
+
+# Log
+logging:
+  path: ./data
+  file: log/application.log
+  file.max-size: 10MB
+  pattern:
+    dateformat: yyyy-MM-dd HH:mm:ss.SSS
+  level:
+    com.my: info
+    org.springframework: info
+    org.spring.springboot.dao: debug
