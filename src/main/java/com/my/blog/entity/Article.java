@@ -1,6 +1,5 @@
 package com.my.blog.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -9,9 +8,9 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "blog")
+@Table(name = "article")
 @EntityListeners(AuditingEntityListener.class)
-public class Blog {
+public class Article {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
@@ -35,7 +34,7 @@ public class Blog {
     @Column(name = "is_delete", nullable = false)
     private Boolean isDelete;
 
-    private Blog(Builder builder) {
+    private Article(Builder builder) {
         setId(builder.id);
         setTitle(builder.title);
         setContent(builder.content);
@@ -92,7 +91,7 @@ public class Blog {
         isDelete = delete;
     }
 
-    public Blog() {
+    public Article() {
     }
 
     @Override
@@ -155,8 +154,8 @@ public class Blog {
             return this;
         }
 
-        public Blog build() {
-            return new Blog(this);
+        public Article build() {
+            return new Article(this);
         }
     }
 }

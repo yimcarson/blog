@@ -1,6 +1,6 @@
 package com.my.blog.repository;
 
-import com.my.blog.entity.Blog;
+import com.my.blog.entity.Article;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +9,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class BlogRepositoryTest {
+public class ArticleRepositoryTest {
 
     @Autowired
-    private BlogRepository blogRepository;
+    private ArticleRepository articleRepository;
 
     @Test
     public void testSave() {
-        blogRepository.save(new Blog.Builder()
+        articleRepository.save(new Article.Builder()
                 .title("Test")
                 .content("Hello World!")
                 .isDelete(false)
