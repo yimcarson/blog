@@ -2,7 +2,7 @@
 server:
   port: 8081
   servlet:
-    path: /
+    path: /blog
   tomcat:
     uri-encoding: UTF-8
     max-threads: 500
