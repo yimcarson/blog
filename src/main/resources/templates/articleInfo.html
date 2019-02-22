@@ -26,7 +26,7 @@
         <div class="blog-post">
             <h2 class="blog-post-title" th:text="${article.title}"></h2>
             <span class="blog-post-meta" th:text="${#dates.format(article.insertTime,'yyyy-MM-dd HH:mm:ss')}"></span>
-            <a th:text="${article.user.username}" th:href="'/' + ${article.user.username} + '/article'" target="_blank"></a>
+            <a th:text="${article.user.username}" th:href="@{/} + ${article.user.username} + '/article'" target="_blank"></a>
         </div>
         <div id="content"></div>
     </div>
