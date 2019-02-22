@@ -22,7 +22,7 @@ spring:
     #hibernate ddl auto(validate,create,update,create-drop)
     hibernate:
       ddl-auto: update
-    #      ddl-auto: create-drop
+#          ddl-auto: create-drop
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 
   # Thymeleaf

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${article.title}"></title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/markdown.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/ie10-viewport-bug-workaround.css}" rel="stylesheet" type="text/css" />
+
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script th:src="@{/js/markdown.js}"></script>
+    <script th:src="@{/js/ie-emulation-modes-warning.js}"></script>
+    <script th:src="@{/js/ie10-viewport-bug-workaround.js}"></script>
+    <!--<script th:src="@{/js/jquery.min.js}"></script>-->
+
+    <script src="https://cdn.bootcss.com/showdown/1.3.0/showdown.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="col-sm-8 blog-main">
+        <div class="blog-post">
+            <h2 class="blog-post-title" th:text="${article.title}"></h2>
+            <span class="blog-post-meta" th:text="${#dates.format(article.insertTime,'yyyy-MM-dd HH:mm:ss')}"></span>
+            <a th:text="${article.user.username}" th:href="'/' + ${article.user.username} + '/article'"></a>
+        </div>
+        <div id="content"></div>
+    </div>
+</div>
+<script th:inline="javascript">
+    var content = [[${article.content}]];
+
+    // var htmlcontent = marked(content);
+
+    var htmlcontent  = new showdown.Converter().makeHtml(content);
+    $("#content").html(htmlcontent)
+</script>
+</body>
+</html>

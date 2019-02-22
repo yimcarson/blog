@@ -15,6 +15,10 @@ public class Article {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
     @Column(name = "title", nullable = false, unique = true, updatable = false)
     private String title;
 
@@ -36,6 +40,7 @@ public class Article {
 
     private Article(Builder builder) {
         setId(builder.id);
+        setUser(builder.user);
         setTitle(builder.title);
         setContent(builder.content);
         setInsertTime(builder.insertTime);
@@ -49,6 +54,14 @@ public class Article {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getTitle() {
@@ -99,6 +112,8 @@ public class Article {
         final StringBuilder sb = new StringBuilder("{");
         sb.append("\"id\":")
                 .append(id);
+        sb.append(",\"user\":")
+                .append(user);
         sb.append(",\"title\":\"")
                 .append(title).append('\"');
         sb.append(",\"content\":\"")
@@ -115,6 +130,7 @@ public class Article {
 
     public static final class Builder {
         private Long id;
+        private User user;
         private String title;
         private String content;
         private Date insertTime;
@@ -126,6 +142,11 @@ public class Article {
 
         public Builder id(Long val) {
             id = val;
+            return this;
+        }
+
+        public Builder user(User val) {
+            user = val;
             return this;
         }
 

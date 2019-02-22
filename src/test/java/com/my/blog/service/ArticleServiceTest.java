@@ -1,10 +1,12 @@
 package com.my.blog.service;
 
 import com.my.blog.entity.Article;
+import com.my.blog.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -15,7 +17,7 @@ public class ArticleServiceTest {
 
     @Test
     public void testGet() {
-        Article article = articleService.get(new Article.Builder().id(1L).build());
+        Page<Article> article = articleService.get(new User.Builder().username("Carson").build());
         System.out.println(article);
     }
 

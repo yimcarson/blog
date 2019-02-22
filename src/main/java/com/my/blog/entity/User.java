@@ -16,6 +16,9 @@ public class User {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "nickname")
+    private String nickname;
+
     @Column(name = "username", nullable = false, unique = true, updatable = false)
     private String username;
 
@@ -36,6 +39,7 @@ public class User {
 
     private User(Builder builder) {
         setId(builder.id);
+        setNickname(builder.nickname);
         setUsername(builder.username);
         setPassword(builder.password);
         setInsertTime(builder.insertTime);
@@ -49,6 +53,14 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getUsername() {
@@ -99,6 +111,8 @@ public class User {
         final StringBuilder sb = new StringBuilder("{");
         sb.append("\"id\":")
                 .append(id);
+        sb.append(",\"nickname\":\"")
+                .append(nickname).append('\"');
         sb.append(",\"username\":\"")
                 .append(username).append('\"');
         sb.append(",\"password\":\"")
@@ -115,6 +129,7 @@ public class User {
 
     public static final class Builder {
         private Long id;
+        private String nickname;
         private String username;
         private String password;
         private Date insertTime;
@@ -126,6 +141,11 @@ public class User {
 
         public Builder id(Long val) {
             id = val;
+            return this;
+        }
+
+        public Builder nickname(String val) {
+            nickname = val;
             return this;
         }
 
